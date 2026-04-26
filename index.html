@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maicon Monteiro – Especialista em Gesso</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="capaceteIcon.png">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --verde:        #2d4f2e;
+  --verde-escuro: #1a2e1b;
+  --dourado:      #a07840;
+  --dourado-claro:#c9973e;
+  --creme:        #f5f0e8;
+  --branco:       #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Raleway', sans-serif; background: var(--creme); overflow-x: hidden; }
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 62% 38%;
+  z-index: 0;
+}
+.hero-bg-img {
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  animation: zoomIn 1.4s ease forwards;
+}
+.hero-bg-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 65%, var(--creme) 100%);
+}
+.hero-bg-creme { background: var(--creme); }
+
+@keyframes zoomIn {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1); }
+}
+
+/* ══════════════════════════════
+   NAVBAR
+══════════════════════════════ */
+nav {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 20px 5% 0;
+  animation: fadeDown .5s ease both;
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 860px;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 8px 18px 8px 12px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.10);
+}
+
+.logo { display: flex; align-items: center; text-decoration: none; }
+.logo img { height: 42px; width: auto; }
+
+.nav-links {
+  display: flex; align-items: center;
+  gap: 20px; list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--verde-escuro);
+  transition: color .2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1.5px; background: var(--dourado);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s;
+}
+.nav-links a:hover { color: var(--dourado); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.btn-nav {
+  background: var(--dourado) !important;
+  color: var(--branco) !important;
+  padding: 9px 15px !important;
+  border-radius: 6px;
+  font-size: 10.5px !important; font-weight: 700 !important;
+  letter-spacing: .08em !important;
+  white-space: nowrap;
+  transition: background .2s !important;
+}
+.btn-nav::after { display: none !important; }
+.btn-nav:hover { background: var(--dourado-claro) !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--verde); border-radius: 2px; transition: .3s; }
+
+/* ══════════════════════════════
+   HERO BODY
+══════════════════════════════ */
+.hero-body {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 62% 38%;
+  align-items: center;
+  padding: 30px 5% 180px;
+}
+
+.hero-spacer { }
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  padding-left: 3%;
+}
+
+.hero-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 2.5vw, 42px);
+  font-weight: 700;
+  color: var(--verde-escuro);
+  line-height: 1.12;
+  margin-bottom: 6px;
+  opacity: 0;
+  animation: fadeUp .6s ease .6s forwards;
+}
+.hero-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(17px, 1.8vw, 30px);
+  font-style: italic; font-weight: 400;
+  color: var(--dourado);
+  line-height: 1.25;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp .6s ease .8s forwards;
+}
+.hero-desc {
+  font-size: clamp(12.5px, 1.1vw, 14px);
+  color: #555; line-height: 1.6;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp .6s ease 1s forwards;
+}
+.hero-desc strong { color: var(--verde-escuro); font-weight: 700; }
+
+.hero-cta {
+  display: inline-block; align-self: flex-start;
+  padding: 12px 24px;
+  background: var(--verde); color: var(--branco);
+  text-decoration: none;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  border-radius: 4px; border: 2px solid var(--verde);
+  transition: background .25s, color .25s, transform .2s;
+  opacity: 0;
+  animation: fadeUp .6s ease 1.2s forwards;
+}
+.hero-cta:hover { background: transparent; color: var(--verde); transform: translateY(-2px); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 150px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  opacity: 0;
+  animation: fadeIn .8s ease 2s forwards;
+}
+.scroll-hint span { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: rgba(70,70,70,.55); }
+.scroll-arrow {
+  width: 16px; height: 16px;
+  border-right: 1.5px solid rgba(70,70,70,.4);
+  border-bottom: 1.5px solid rgba(70,70,70,.4);
+  transform: rotate(45deg);
+  animation: bounce 1.6s ease-in-out infinite;
+  margin-top: -3px;
+}
+@keyframes bounce {
+  0%,100% { transform: rotate(45deg) translateY(0); }
+  50%      { transform: rotate(45deg) translateY(5px); }
+}
+
+/* ══════════════════════════════
+   CARDS
+══════════════════════════════ */
+.cards-row {
+  position: absolute;
+  bottom: -60px;
+  left: 0; right: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 0 5%;
+}
+
+.card {
+  padding: 14px 14px 18px;
+  display: flex; flex-direction: column; gap: 6px;
+  border-radius: 10px;
+  opacity: 0;
+  animation: fadeUp .6s ease forwards;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.card:nth-child(1) { background: var(--verde);        animation-delay: 1.4s; }
+.card:nth-child(2) { background: var(--dourado);      animation-delay: 1.55s; }
+.card:nth-child(3) { background: var(--verde-escuro); animation-delay: 1.7s; }
+.card:nth-child(4) { background: var(--verde);        animation-delay: 1.85s; }
+
+.card-icon { width: 22px; height: 22px; opacity: .85; flex-shrink: 0; }
+
+.card-titulo {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 13px; font-weight: 600;
+  color: var(--branco); line-height: 1.2;
+}
+.card-desc {
+  font-size: 11px; font-weight: 400;
+  color: rgba(255,255,255,.80); line-height: 1.45;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+/* ══════════════════════════════
+   MOBILE HERO
+══════════════════════════════ */
+@media (max-width: 900px) {
+  .hero-bg { grid-template-columns: 1fr; }
+  .hero-bg-creme { display: none; }
+  .hero-bg-img::after {
+    background: linear-gradient(to bottom, rgba(245,240,232,0) 30%, rgba(245,240,232,.92) 80%);
+  }
+  .hero-body { grid-template-columns: 1fr; padding: 28px 5% 280px; }
+  .hero-spacer { display: none; }
+  .hero-text { padding-left: 0; }
+  .scroll-hint { display: none; }
+  .cards-row {
+    grid-template-columns: repeat(2, 1fr);
+    bottom: -120px;
+    padding-bottom: 0;
+  }
+  .hero { padding-bottom: 140px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  nav.open .nav-links {
+    display: flex; flex-direction: column;
+    position: fixed; top: 86px; left: 0; right: 0;
+    background: var(--branco);
+    padding: 22px 6% 28px; gap: 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.1); z-index: 999;
+  }
+  .btn-nav { text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .cards-row { grid-template-columns: 1fr; bottom: -20px; }
+  .hero { padding-bottom: 60px; }
+  .logo img { height: 34px; }
+  .hero-body { padding-bottom: 520px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════ HERO ══════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-img">
+      <img src="imagemSala.png" alt="Sala decorada com boiserie em gesso">
+    </div>
+    <div class="hero-bg-creme"></div>
+  </div>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <img src="logo-Maicon-Monteiro-Especialista-em-Boiserie.png" alt="Maicon Monteiro – Especialista em Gesso">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Sobre mim</a></li>
+        <li><a href="#">Serviços</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contato</a></li>
+        <li><a href="#" class="btn-nav">Solicitar Orçamento</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="hero-body">
+    <div class="hero-spacer"></div>
+    <div class="hero-text">
+      <h1 class="hero-h1">Transforme sua casa<br>ou empresa com</h1>
+      <p class="hero-sub">Boiseries, Forros, Drywall &amp; Mais</p>
+      <p class="hero-desc">Projetos personalizados e instalação impecável em <strong>Uberlândia e região</strong>.</p>
+      <a href="#" class="hero-cta">Confira alguns trabalhos</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Ver mais</span>
+    <div class="scroll-arrow"></div>
+  </div>
+
+  <div class="cards-row">
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 28 28" fill="none">
+        <rect x="2" y="6" width="24" height="16" rx="2.5" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/>
+        <path d="M2 11h24" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/>
+        <path d="M6 18h5" stroke="rgba(255,255,255,.85)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p class="card-titulo">Pagamento facilitado</p>
+      <p class="card-desc">Parcelamos em até 10x sem juros para você transformar seu ambiente sem pesar no bolso.</p>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="10" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/>
+        <path d="M14 8v6l3.5 2" stroke="rgba(255,255,255,.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4.5 7l1.5 1.5M23.5 7l-1.5 1.5" stroke="rgba(255,255,255,.5)" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <p class="card-titulo">Entrega rápida</p>
+      <p class="card-desc">Cumpro os prazos com responsabilidade e entregamos seu projeto no tempo combinado.</p>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 28 28" fill="none">
+        <rect x="5" y="2" width="18" height="24" rx="2.5" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/>
+        <path d="M9 10h10M9 14h10M9 18h6" stroke="rgba(255,255,255,.6)" stroke-width="1.3" stroke-linecap="round"/>
+        <circle cx="21" cy="21" r="5.5" fill="var(--verde)" stroke="rgba(255,255,255,.5)" stroke-width="1"/>
+        <path d="M18.8 21l1.7 1.7 3-3" stroke="rgba(255,255,255,.95)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="card-titulo">Garantia de 6 meses</p>
+      <p class="card-desc">Todo serviço da Maison Gesso conta com garantia real de 6 meses contra defeitos de execução.</p>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 28 28" fill="none">
+        <rect x="2" y="4"  width="24" height="6" rx="1.5" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/>
+        <rect x="2" y="12" width="24" height="6" rx="1.5" stroke="rgba(255,255,255,.85)" stroke-width="1.5"/>
+        <rect x="2" y="20" width="24" height="4" rx="1.5" stroke="rgba(255,255,255,.6)"  stroke-width="1.3"/>
+      </svg>
+      <p class="card-titulo">Acabamento impecável</p>
+      <p class="card-desc">O resultado é um trabalho limpo, elegante e com padrão de alto nível em cada parede.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SOBRE MIM ══════════════════════════════ -->
+<section class="sobre" id="sobre">
+  <div class="sobre-inner">
+    <div class="sobre-texto">
+      <p class="sobre-tag">Sobre mim</p>
+      <h2 class="sobre-h2">Prazer, sou o Maicon Monteiro.</h2>
+      <p class="sobre-p">Há mais de 10 anos, ajudo pessoas a valorizarem seus espaços com projetos em gesso que unem técnica, estilo e bom gosto. Meu trabalho é totalmente artesanal — cada boiserie é pensada no detalhe, do desenho à instalação.</p>
+      <p class="sobre-p">Mais do que aplicar gesso, eu <strong>trago vida às paredes</strong>. Trabalho com foco em acabamento impecável e atendimento humano, explicando cada etapa e garantindo que o cliente fique tranquilo do início ao fim.</p>
+      <blockquote class="sobre-quote">"O gesso não é só um acabamento, é o que dá alma ao ambiente."</blockquote>
+      <a href="#" class="sobre-cta">Solicitar orçamento agora!</a>
+    </div>
+    <div class="sobre-img-wrap">
+      <img src="homemconstrucao.png" alt="Maicon Monteiro – Especialista em Gesso">
+    </div>
+  </div>
+</section>
+
+<style>
+.sobre { background: var(--creme); padding: 140px 5% 60px; }
+.sobre-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; }
+.sobre-tag { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: var(--dourado); margin-bottom: 10px; }
+.sobre-h2 { font-family: 'Raleway', sans-serif; font-size: clamp(22px, 2.4vw, 34px); font-weight: 700; color: var(--verde-escuro); margin-bottom: 20px; line-height: 1.15; }
+.sobre-p { font-size: clamp(13px, 1.1vw, 14.5px); color: #555; line-height: 1.7; margin-bottom: 16px; }
+.sobre-p strong { color: var(--verde-escuro); font-weight: 700; }
+.sobre-quote { border-left: 3px solid var(--dourado); padding: 8px 0 8px 16px; margin: 20px 0 28px; font-size: clamp(13px, 1.1vw, 14.5px); color: #555; font-style: normal; line-height: 1.6; }
+.sobre-cta { display: inline-block; padding: 12px 24px; background: var(--dourado); color: var(--branco); text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; border-radius: 4px; border: 2px solid var(--dourado); transition: background .25s, color .25s, transform .2s; }
+.sobre-cta:hover { background: transparent; color: var(--dourado); transform: translateY(-2px); }
+.sobre-img-wrap { position: relative; display: flex; align-items: flex-end; justify-content: center; }
+.sobre-img-wrap img { width: 100%; max-width: 480px; object-fit: contain; display: block; -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%); mask-image: linear-gradient(to bottom, black 55%, transparent 100%); }
+.sobre-texto { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.sobre-img-wrap { opacity: 0; transform: translateY(24px); transition: opacity .7s ease .2s, transform .7s ease .2s; }
+.sobre.visible .sobre-texto, .sobre.visible .sobre-img-wrap { opacity: 1; transform: translateY(0); }
+@media (max-width: 768px) { .sobre { padding-top: 200px; } .sobre-inner { grid-template-columns: 1fr; } .sobre-img-wrap { order: -1; } .sobre-img-wrap img { max-width: 300px; margin: 0 auto; } }
+@media (max-width: 480px) { .sobre { padding-top: 420px; } }
+</style>
+
+<script>
+const sobreSection = document.querySelector('.sobre');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.15 });
+obs.observe(sobreSection);
+</script>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navbar    = document.getElementById('navbar');
+  hamburger.addEventListener('click', () => navbar.classList.toggle('open'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => navbar.classList.remove('open')));
+</script>
+
+<!-- ══════════════════════════════ ANTES E DEPOIS ══════════════════════════════ -->
+<section class="antesdepois" id="antesdepois">
+  <div class="ad-header">
+    <p class="ad-tag">Antes e Depois</p>
+    <h2 class="ad-h2">Confira o resultado de algumas instalações que já realizamos</h2>
+  </div>
+  <div class="ad-grid">
+    <div class="slider-wrap">
+      <div class="slider-container" data-slider>
+        <img class="img-depois" src="aparedeDepois.png" alt="Parede depois">
+        <div class="img-antes-wrap"><img class="img-antes" src="paredeAntes.png" alt="Parede antes"></div>
+        <div class="divider"></div>
+        <button class="handle" aria-label="Arraste para comparar"><svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="white" stroke="#a07840" stroke-width="1.5"/><path d="M11 18l-4 0M11 18l3-3M11 18l3 3" stroke="#a07840" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 18l4 0M25 18l-3-3M25 18l-3 3" stroke="#a07840" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span class="label label-antes">Antes</span><span class="label label-depois">Depois</span>
+      </div>
+    </div>
+    <div class="slider-wrap">
+      <div class="slider-container" data-slider>
+        <img class="img-depois" src="sofaDepois.png" alt="Sofá depois">
+        <div class="img-antes-wrap"><img class="img-antes" src="sofaAntes.png" alt="Sofá antes"></div>
+        <div class="divider"></div>
+        <button class="handle" aria-label="Arraste para comparar"><svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="white" stroke="#a07840" stroke-width="1.5"/><path d="M11 18l-4 0M11 18l3-3M11 18l3 3" stroke="#a07840" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 18l4 0M25 18l-3-3M25 18l-3 3" stroke="#a07840" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span class="label label-antes">Antes</span><span class="label label-depois">Depois</span>
+      </div>
+    </div>
+    <div class="slider-wrap">
+      <div class="slider-container" data-slider>
+        <img class="img-depois" src="camaDepois.png" alt="Cama depois">
+        <div class="img-antes-wrap"><img class="img-antes" src="camaAntes.png" alt="Cama antes"></div>
+        <div class="divider"></div>
+        <button class="handle" aria-label="Arraste para comparar"><svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="white" stroke="#a07840" stroke-width="1.5"/><path d="M11 18l-4 0M11 18l3-3M11 18l3 3" stroke="#a07840" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 18l4 0M25 18l-3-3M25 18l-3 3" stroke="#a07840" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span class="label label-antes">Antes</span><span class="label label-depois">Depois</span>
+      </div>
+    </div>
+    <div class="slider-wrap">
+      <div class="slider-container" data-slider>
+        <img class="img-depois" src="armarioDepois.png" alt="Armário depois">
+        <div class="img-antes-wrap"><img class="img-antes" src="armarioAntes.png" alt="Armário antes"></div>
+        <div class="divider"></div>
+        <button class="handle" aria-label="Arraste para comparar"><svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="white" stroke="#a07840" stroke-width="1.5"/><path d="M11 18l-4 0M11 18l3-3M11 18l3 3" stroke="#a07840" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 18l4 0M25 18l-3-3M25 18l-3 3" stroke="#a07840" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span class="label label-antes">Antes</span><span class="label label-depois">Depois</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.antesdepois { background: var(--creme); padding: 40px 5% 80px; }
+.ad-header { text-align: center; margin-bottom: 48px; }
+.ad-tag { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: var(--dourado); margin-bottom: 10px; }
+.ad-h2 { font-family: 'Raleway', sans-serif; font-size: clamp(20px, 2.2vw, 32px); font-weight: 700; color: var(--verde-escuro); line-height: 1.2; max-width: 600px; margin: 0 auto; }
+.ad-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+.slider-wrap { border-radius: 14px; overflow: hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.10); }
+.slider-container { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; cursor: col-resize; user-select: none; }
+.img-depois { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.img-antes-wrap { position: absolute; inset: 0; overflow: hidden; width: 50%; }
+.img-antes { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; min-width: 200%; display: block; pointer-events: none; }
+.divider { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: rgba(160,120,64,0.7); transform: translateX(-50%); pointer-events: none; z-index: 3; }
+.handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; border: none; background: none; padding: 0; cursor: col-resize; z-index: 4; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); transition: transform .15s; }
+.handle:hover { transform: translate(-50%, -50%) scale(1.1); }
+.handle svg { width: 36px; height: 36px; }
+.label { position: absolute; bottom: 12px; z-index: 5; font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; font-weight: 600; color: white; background: var(--verde); padding: 4px 12px; border-radius: 20px; pointer-events: none; }
+.label-antes { left: 12px; }
+.label-depois { right: 12px; }
+@media (max-width: 700px) { .ad-grid { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+document.querySelectorAll('[data-slider]').forEach(container => {
+  const antesWrap = container.querySelector('.img-antes-wrap');
+  const antesImg  = container.querySelector('.img-antes');
+  const divider   = container.querySelector('.divider');
+  const handle    = container.querySelector('.handle');
+  let dragging = false;
+  function setPosition(x) {
+    const rect = container.getBoundingClientRect();
+    const pct  = Math.min(100, Math.max(0, ((x - rect.left) / rect.width) * 100));
+    antesWrap.style.width = pct + '%';
+    antesImg.style.minWidth = (100 / pct * 100) + '%';
+    divider.style.left = pct + '%';
+    handle.style.left  = pct + '%';
+  }
+  handle.addEventListener('mousedown',  e => { dragging = true; e.preventDefault(); });
+  container.addEventListener('mousedown', e => { dragging = true; setPosition(e.clientX); });
+  window.addEventListener('mousemove',  e => { if (dragging) setPosition(e.clientX); });
+  window.addEventListener('mouseup',    () => { dragging = false; });
+  handle.addEventListener('touchstart', e => { dragging = true; e.preventDefault(); }, { passive: false });
+  container.addEventListener('touchstart', e => { dragging = true; setPosition(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('touchmove',  e => { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('touchend',   () => { dragging = false; });
+  requestAnimationFrame(() => { const rect = container.getBoundingClientRect(); setPosition(rect.left + rect.width / 2); });
+});
+</script>
+
+<!-- ══════════════════════════════ SERVIÇOS ══════════════════════════════ -->
+<section class="servicos" id="servicos">
+  <div class="srv-header">
+    <p class="srv-tag">Serviços</p>
+    <h2 class="srv-h2">O toque de elegância que seu espaço precisa</h2>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card">
+      <img src="sofaAntes.png" alt="Boiserie Decorativo">
+      <div class="srv-overlay"><h3 class="srv-titulo">Boiserie Decorativo</h3><p class="srv-desc">Transforma paredes simples em pontos de destaque, trazendo charme e sofisticação com molduras feitas sob medida e acabamento impecável.</p><a href="#" class="srv-btn">Solicitar Orçamento</a></div>
+    </div>
+    <div class="srv-card">
+      <img src="segunda.png" alt="Sancas Iluminadas">
+      <div class="srv-overlay"><h3 class="srv-titulo">Sancas Iluminadas</h3><p class="srv-desc">Cria um efeito moderno e aconchegante no ambiente, com iluminação embutida e design que valoriza o teto e as linhas do espaço.</p><a href="#" class="srv-btn">Solicitar Orçamento</a></div>
+    </div>
+    <div class="srv-card">
+      <img src="terceira.png" alt="Revestimento 3D em Gesso">
+      <div class="srv-overlay"><h3 class="srv-titulo">Revestimento 3D em Gesso</h3><p class="srv-desc">Adiciona textura e movimento às paredes, proporcionando um visual elegante e contemporâneo com instalação precisa e acabamento profissional.</p><a href="#" class="srv-btn">Solicitar Orçamento</a></div>
+    </div>
+    <div class="srv-card">
+      <img src="quarta.png" alt="Molduras e Rodapés">
+      <div class="srv-overlay"><h3 class="srv-titulo">Molduras e Rodapés</h3><p class="srv-desc">Finaliza o ambiente com perfeição, garantindo harmonia entre piso e parede com molduras e rodapés personalizados em alto padrão.</p><a href="#" class="srv-btn">Solicitar Orçamento</a></div>
+    </div>
+    <div class="srv-card">
+      <img src="quinta.png" alt="Teto Rebaixado em Gesso">
+      <div class="srv-overlay"><h3 class="srv-titulo">Teto Rebaixado em Gesso</h3><p class="srv-desc">Proporciona elegância e conforto térmico, permitindo embutir iluminação e disfarçar imperfeições no teto de forma funcional e sofisticada.</p><a href="#" class="srv-btn">Solicitar Orçamento</a></div>
+    </div>
+    <div class="srv-card">
+      <img src="sexta.png" alt="Painéis em Gesso Liso">
+      <div class="srv-overlay"><h3 class="srv-titulo">Painéis em Gesso Liso</h3><p class="srv-desc">Oferece um acabamento refinado e uniforme, ideal para integrar decoração e deixar o ambiente mais moderno e visualmente equilibrado.</p><a href="#" class="srv-btn">Solicitar Orçamento</a></div>
+    </div>
+  </div>
+</section>
+
+<style>
+.servicos { background: var(--creme); padding: 80px 5%; }
+.srv-header { text-align: center; margin-bottom: 48px; }
+.srv-tag { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: var(--dourado); margin-bottom: 10px; }
+.srv-h2 { font-family: 'Raleway', sans-serif; font-size: clamp(20px, 2.2vw, 32px); font-weight: 700; color: var(--verde-escuro); line-height: 1.2; max-width: 500px; margin: 0 auto; }
+.srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1100px; margin: 0 auto; }
+.srv-card { position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 4 / 3; cursor: pointer; }
+.srv-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+.srv-card:hover img { transform: scale(1.06); }
+.srv-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; background: linear-gradient(to top, rgba(26,46,27,0.0) 0%, rgba(26,46,27,0.0) 100%); transition: background .4s ease; }
+.srv-card:hover .srv-overlay { background: linear-gradient(to top, rgba(26,46,27,0.88) 0%, rgba(160,120,64,0.72) 100%); }
+.srv-titulo { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(14px, 1.3vw, 17px); font-weight: 600; color: var(--branco); margin-bottom: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.55); transition: margin .4s ease; }
+.srv-card:hover .srv-titulo { margin-bottom: 10px; }
+.srv-desc { font-size: clamp(11px, 1vw, 13px); color: rgba(255,255,255,0.90); line-height: 1.55; margin-bottom: 14px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .4s ease, opacity .35s ease .05s; }
+.srv-card:hover .srv-desc { max-height: 120px; opacity: 1; }
+.srv-btn { display: inline-block; align-self: flex-start; padding: 8px 18px; background: var(--verde); color: var(--branco); text-decoration: none; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; border-radius: 4px; border: 2px solid var(--verde); opacity: 0; transform: translateY(8px); transition: opacity .3s ease .1s, transform .3s ease .1s, background .25s, color .25s; }
+.srv-card:hover .srv-btn { opacity: 1; transform: translateY(0); }
+.srv-btn:hover { background: transparent; color: var(--branco); border-color: var(--branco); }
+@media (max-width: 900px) { .srv-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .srv-grid { grid-template-columns: 1fr; } }
+</style>
+
+<!-- ══════════════════════════════ GESSEIRO ══════════════════════════════ -->
+<section class="gesseiro" id="gesseiro">
+  <div class="gesseiro-inner">
+    <div class="gesseiro-texto">
+      <p class="gesseiro-tag">Gesseiro</p>
+      <h2 class="gesseiro-h2">Transforme seu lar com o <span>toque elegante do gesso!</span></h2>
+      <p class="gesseiro-p">Projetos em boiserie, sancas e molduras feitos sob medida para valorizar cada ambiente.<br>Na Maison Gesso, cada detalhe é pensado para unir <strong>sofisticação, estilo e acabamento impecável</strong>.</p>
+      <div class="gesseiro-cards">
+        <div class="gesseiro-card">
+          <div class="gesseiro-card-icon">
+            <svg viewBox="0 0 28 28" fill="none"><rect x="2" y="6" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="16" y="6" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 20h24M2 24h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="gesseiro-card-titulo">Projetos Sob Medida</p>
+            <p class="gesseiro-card-desc">Boiseries, sancas e molduras personalizadas para valorizar cada canto da sua casa, do clássico ao moderno.</p>
+          </div>
+        </div>
+        <div class="gesseiro-card">
+          <div class="gesseiro-card-icon">
+            <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="1.5"/><path d="M9 14l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <p class="gesseiro-card-titulo">Acabamento Premium</p>
+            <p class="gesseiro-card-desc">Cada detalhe é executado com precisão e cuidado para garantir um resultado impecável, digno de revista.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gesseiro-img-col">
+      <div class="gesseiro-bg-dourado"></div>
+      <img class="gesseiro-img-flutuante" src="imagemFlutua.png" alt="Moldura de gesso flutuando">
+    </div>
+  </div>
+</section>
+
+<style>
+.gesseiro { background: var(--creme); padding: 80px 5%; overflow: hidden; }
+.gesseiro-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; }
+.gesseiro-tag { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: var(--dourado); margin-bottom: 12px; }
+.gesseiro-h2 { font-family: 'Raleway', sans-serif; font-size: clamp(22px, 2.4vw, 36px); font-weight: 700; color: var(--verde-escuro); line-height: 1.15; margin-bottom: 18px; }
+.gesseiro-h2 span { color: var(--dourado); }
+.gesseiro-p { font-size: clamp(13px, 1.1vw, 14.5px); color: #555; line-height: 1.7; margin-bottom: 32px; }
+.gesseiro-p strong { color: var(--verde-escuro); font-weight: 700; }
+.gesseiro-cards { display: flex; flex-direction: column; gap: 16px; }
+.gesseiro-card { display: flex; align-items: flex-start; gap: 14px; background: white; border-radius: 12px; padding: 16px 18px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+.gesseiro-card-icon { flex-shrink: 0; width: 36px; height: 36px; background: var(--creme); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--dourado); }
+.gesseiro-card-icon svg { width: 20px; height: 20px; }
+.gesseiro-card-titulo { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; font-weight: 600; color: var(--dourado); margin-bottom: 4px; }
+.gesseiro-card-desc { font-size: 12.5px; color: #666; line-height: 1.55; }
+.gesseiro-img-col { position: relative; display: flex; align-items: center; justify-content: center; min-height: 420px; }
+.gesseiro-bg-dourado { position: absolute; right: 0; width: 75%; height: 80%; background: var(--dourado); border-radius: 16px; opacity: .35; z-index: 0; }
+.gesseiro-img-flutuante { position: relative; z-index: 2; width: 85%; max-width: 380px; object-fit: contain; animation: flutuacao 3.2s ease-in-out infinite; filter: drop-shadow(0 24px 40px rgba(0,0,0,0.22)); }
+@keyframes flutuacao { 0% { transform: translateY(0px); } 50% { transform: translateY(-18px); } 100% { transform: translateY(0px); } }
+.gesseiro-texto { opacity: 0; transform: translateX(-24px); transition: opacity .7s ease, transform .7s ease; }
+.gesseiro-img-col { opacity: 0; transform: translateX(24px); transition: opacity .7s ease .2s, transform .7s ease .2s; }
+.gesseiro.visible .gesseiro-texto, .gesseiro.visible .gesseiro-img-col { opacity: 1; transform: translateX(0); }
+@media (max-width: 768px) { .gesseiro-inner { grid-template-columns: 1fr; } .gesseiro-img-col { min-height: 300px; } .gesseiro-img-flutuante { max-width: 240px; } }
+</style>
+
+<script>
+const gesseiroSection = document.querySelector('.gesseiro');
+const obsGesseiro = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obsGesseiro.unobserve(e.target); } });
+}, { threshold: 0.15 });
+obsGesseiro.observe(gesseiroSection);
+</script>
+
+<!-- ══════════════════════════════ SEGURANÇA / NRs ══════════════════════════════ -->
+<section class="seguranca" id="seguranca">
+  <div class="seguranca-inner">
+    <div class="seg-img-col">
+      <img src="capacete.png" alt="Equipamentos de segurança — capacete, luvas e óculos">
+    </div>
+    <div class="seg-card">
+      <h2 class="seg-h2">Aqui o trabalho é feito com <strong>técnica, responsabilidade e segurança.</strong></h2>
+      <p class="seg-desc">Possuo todas as NRs exigidas pela legislação, o que garante a <strong>regularidade e a segurança.</strong></p>
+      <ul class="seg-lista">
+        <li>
+          <span class="seg-check"><svg viewBox="0 0 22 22" fill="none"><rect x="1" y="1" width="20" height="20" rx="5" stroke="rgba(255,255,255,.4)" stroke-width="1.2"/><path d="M5.5 11l4 4 7-8" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <p><strong>NR-35 — Trabalho em Altura:</strong> habilitação para execução segura de serviços em locais elevados.</p>
+        </li>
+        <li>
+          <span class="seg-check"><svg viewBox="0 0 22 22" fill="none"><rect x="1" y="1" width="20" height="20" rx="5" stroke="rgba(255,255,255,.4)" stroke-width="1.2"/><path d="M5.5 11l4 4 7-8" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <p><strong>NR-12 — Segurança no Manuseio de Máquinas e Ferramentas:</strong> uso adequado de equipamentos elétricos e ferramentas de corte.</p>
+        </li>
+        <li>
+          <span class="seg-check"><svg viewBox="0 0 22 22" fill="none"><rect x="1" y="1" width="20" height="20" rx="5" stroke="rgba(255,255,255,.4)" stroke-width="1.2"/><path d="M5.5 11l4 4 7-8" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <p><strong>NR-06 — Equipamentos de Proteção Individual (EPI):</strong> utilização correta e obrigatória de EPIs em todas as etapas.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+.seguranca { background: var(--creme); padding: 0 5% 80px; overflow: hidden; }
+.seguranca-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 0; }
+.seg-img-col { flex: 0 0 50%; display: flex; align-items: flex-end; justify-content: flex-end; position: relative; z-index: 2; opacity: 0; transform: translateX(-28px); transition: opacity .7s ease, transform .7s ease; }
+.seg-img-col img { width: 100%; max-width: 500px; object-fit: contain; display: block; mix-blend-mode: multiply; }
+.seg-card { flex: 0 0 50%; background: var(--verde-escuro); border-radius: 16px; padding: 44px 40px; margin-left: -48px; position: relative; z-index: 1; box-shadow: 0 16px 56px rgba(0,0,0,0.25); opacity: 0; transform: translateX(28px); transition: opacity .7s ease .2s, transform .7s ease .2s; }
+.seguranca.visible .seg-img-col, .seguranca.visible .seg-card { opacity: 1; transform: translateX(0); }
+.seg-h2 { font-family: 'Raleway', sans-serif; font-size: clamp(16px, 1.6vw, 22px); font-weight: 400; color: var(--branco); line-height: 1.4; margin-bottom: 14px; }
+.seg-h2 strong { font-weight: 700; }
+.seg-desc { font-size: clamp(12.5px, 1vw, 14px); color: rgba(255,255,255,.75); line-height: 1.65; margin-bottom: 28px; }
+.seg-desc strong { color: var(--branco); font-weight: 700; }
+.seg-lista { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.seg-lista li { display: flex; align-items: flex-start; gap: 12px; }
+.seg-check { flex-shrink: 0; width: 22px; height: 22px; margin-top: 1px; }
+.seg-check svg { width: 22px; height: 22px; display: block; }
+.seg-lista p { font-size: clamp(12px, .95vw, 13.5px); color: rgba(255,255,255,.75); line-height: 1.55; }
+.seg-lista p strong { color: var(--branco); font-weight: 700; }
+@media (max-width: 900px) {
+  .seguranca-inner { flex-direction: column; gap: 0; }
+  .seg-img-col { flex: none; width: 100%; justify-content: center; }
+  .seg-img-col img { max-width: 280px; }
+  .seg-card { flex: none; width: 100%; margin-left: 0; margin-top: -16px; padding: 28px 24px; }
+}
+</style>
+
+<script>
+const segurancaSection = document.querySelector('.seguranca');
+const obsSeguranca = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obsSeguranca.unobserve(e.target); } });
+}, { threshold: 0.15 });
+obsSeguranca.observe(segurancaSection);
+</script>
+
+<!-- ══════════════════════════════ DEPOIMENTOS ══════════════════════════════ -->
+<section class="depoimentos" id="depoimentos">
+  <div class="dep-header">
+    <p class="dep-tag">Depoimentos</p>
+    <h2 class="dep-h2">Clientes que confiaram no meu trabalho</h2>
+  </div>
+
+  <div class="dep-carousel-wrap">
+    <button class="dep-arrow dep-arrow-prev" id="depPrev" aria-label="Anterior">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="dep-track-outer" id="depTrackOuter">
+      <div class="dep-track" id="depTrack">
+
+        <div class="dep-card">
+          <div class="dep-card-top">
+            <div class="dep-avatar"><img src="comentario1.png" alt="Francisco de Assis"></div>
+            <div class="dep-info">
+              <p class="dep-nome">Francisco de Assis</p>
+              <p class="dep-tempo">1 mês atrás</p>
+            </div>
+            <div class="dep-google">
+              <svg viewBox="0 0 48 48" width="20" height="20"><defs><path id="ga" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></defs><clipPath id="gb"><use href="#ga"/></clipPath><path clip-path="url(#gb)" fill="#FBBC05" d="M0 37V11l17 13z"/><path clip-path="url(#gb)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"/><path clip-path="url(#gb)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"/><path clip-path="url(#gb)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"/></svg>
+            </div>
+          </div>
+          <div class="dep-stars">
+            <span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span>
+            <span class="dep-verificado"><svg viewBox="0 0 18 18" fill="none" width="14" height="14"><circle cx="9" cy="9" r="8.5" fill="#1a73e8"/><path d="M5.5 9l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <p class="dep-texto">TEM tudo que precisa na área, em ferramentas e materiais para dryWall.</p>
+        </div>
+
+        <div class="dep-card">
+          <div class="dep-card-top">
+            <div class="dep-avatar"><img src="comentario2.png" alt="Sergio Machado"></div>
+            <div class="dep-info">
+              <p class="dep-nome">Sergio Machado</p>
+              <p class="dep-tempo">1 mês atrás</p>
+            </div>
+            <div class="dep-google">
+              <svg viewBox="0 0 48 48" width="20" height="20"><defs><path id="gc" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></defs><clipPath id="gd"><use href="#gc"/></clipPath><path clip-path="url(#gd)" fill="#FBBC05" d="M0 37V11l17 13z"/><path clip-path="url(#gd)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"/><path clip-path="url(#gd)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"/><path clip-path="url(#gd)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"/></svg>
+            </div>
+          </div>
+          <div class="dep-stars">
+            <span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span>
+            <span class="dep-verificado"><svg viewBox="0 0 18 18" fill="none" width="14" height="14"><circle cx="9" cy="9" r="8.5" fill="#1a73e8"/><path d="M5.5 9l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <p class="dep-texto">Ótimo!</p>
+        </div>
+
+        <div class="dep-card">
+          <div class="dep-card-top">
+            <div class="dep-avatar"><img src="comentario3.png" alt="Clayton Sousa"></div>
+            <div class="dep-info">
+              <p class="dep-nome">Clayton Sousa</p>
+              <p class="dep-tempo">1 mês atrás</p>
+            </div>
+            <div class="dep-google">
+              <svg viewBox="0 0 48 48" width="20" height="20"><defs><path id="ge" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></defs><clipPath id="gf"><use href="#ge"/></clipPath><path clip-path="url(#gf)" fill="#FBBC05" d="M0 37V11l17 13z"/><path clip-path="url(#gf)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"/><path clip-path="url(#gf)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"/><path clip-path="url(#gf)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"/></svg>
+            </div>
+          </div>
+          <div class="dep-stars">
+            <span class="star full">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span>
+            <span class="dep-verificado"><svg viewBox="0 0 18 18" fill="none" width="14" height="14"><circle cx="9" cy="9" r="8.5" fill="#1a73e8"/><path d="M5.5 9l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <p class="dep-texto">Telefone ñ atende</p>
+        </div>
+
+        <div class="dep-card">
+          <div class="dep-card-top">
+            <div class="dep-avatar"><img src="comentario4.png" alt="Valerio Basilio"></div>
+            <div class="dep-info">
+              <p class="dep-nome">Valerio Basilio</p>
+              <p class="dep-tempo">1 mês atrás</p>
+            </div>
+            <div class="dep-google">
+              <svg viewBox="0 0 48 48" width="20" height="20"><defs><path id="gg" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></defs><clipPath id="gh"><use href="#gg"/></clipPath><path clip-path="url(#gh)" fill="#FBBC05" d="M0 37V11l17 13z"/><path clip-path="url(#gh)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"/><path clip-path="url(#gh)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"/><path clip-path="url(#gh)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"/></svg>
+            </div>
+          </div>
+          <div class="dep-stars">
+            <span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span>
+            <span class="dep-verificado"><svg viewBox="0 0 18 18" fill="none" width="14" height="14"><circle cx="9" cy="9" r="8.5" fill="#1a73e8"/><path d="M5.5 9l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <p class="dep-texto">Atendimento muito bom!</p>
+        </div>
+
+        <div class="dep-card">
+          <div class="dep-card-top">
+            <div class="dep-avatar"><img src="ultimoComentario.png" alt="Ruan Henrique"></div>
+            <div class="dep-info">
+              <p class="dep-nome">Ruan Henrique</p>
+              <p class="dep-tempo">1 mês atrás</p>
+            </div>
+            <div class="dep-google">
+              <svg viewBox="0 0 48 48" width="20" height="20"><defs><path id="gi" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></defs><clipPath id="gj"><use href="#gi"/></clipPath><path clip-path="url(#gj)" fill="#FBBC05" d="M0 37V11l17 13z"/><path clip-path="url(#gj)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"/><path clip-path="url(#gj)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"/><path clip-path="url(#gj)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"/></svg>
+            </div>
+          </div>
+          <div class="dep-stars">
+            <span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span>
+            <span class="dep-verificado"><svg viewBox="0 0 18 18" fill="none" width="14" height="14"><circle cx="9" cy="9" r="8.5" fill="#1a73e8"/><path d="M5.5 9l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <p class="dep-texto">Um atendimento de qualidade excelente! Com materiais muito bons e preços acessíveis! Recomendo a loja!</p>
+        </div>
+
+      </div>
+    </div>
+
+    <button class="dep-arrow dep-arrow-next" id="depNext" aria-label="Próximo">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="dep-dots" id="depDots"></div>
+</section>
+
+<style>
+.depoimentos { background: var(--creme); padding: 80px 5%; }
+.dep-header { text-align: center; margin-bottom: 48px; }
+.dep-tag { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: var(--dourado); margin-bottom: 10px; }
+.dep-h2 { font-family: 'Raleway', sans-serif; font-size: clamp(20px, 2.2vw, 32px); font-weight: 700; color: var(--verde-escuro); line-height: 1.2; }
+.dep-carousel-wrap { display: flex; align-items: center; gap: 12px; max-width: 1100px; margin: 0 auto; }
+.dep-track-outer { flex: 1; overflow: hidden; }
+.dep-track { display: flex; gap: 16px; transition: transform .45s cubic-bezier(.4,0,.2,1); will-change: transform; }
+.dep-card { flex: 0 0 calc((100% - 32px) / 3); background: #ffffff; border-radius: 16px; padding: 22px 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.07); display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.dep-card-top { display: flex; align-items: center; gap: 10px; }
+.dep-avatar { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--verde-escuro); }
+.dep-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dep-info { flex: 1; min-width: 0; }
+.dep-nome { font-size: 13.5px; font-weight: 700; color: var(--verde-escuro); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dep-tempo { font-size: 11.5px; color: #888; margin-top: 1px; }
+.dep-google { flex-shrink: 0; margin-left: auto; display: flex; align-items: center; }
+.dep-stars { display: flex; align-items: center; gap: 2px; }
+.star { font-size: 16px; line-height: 1; }
+.star.full { color: #f5a623; }
+.star.empty { color: #ddd; }
+.dep-verificado { margin-left: 4px; display: flex; align-items: center; }
+.dep-texto { font-size: 13px; color: #555; line-height: 1.6; flex: 1; }
+.dep-arrow { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--dourado); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--dourado); transition: background .2s, color .2s, transform .15s; }
+.dep-arrow:hover { background: var(--dourado); color: #fff; transform: scale(1.05); }
+.dep-arrow svg { width: 18px; height: 18px; }
+.dep-arrow:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+.dep-dots { display: flex; justify-content: center; gap: 8px; margin-top: 28px; }
+.dep-dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; border: none; padding: 0; cursor: pointer; transition: background .3s, transform .3s; }
+.dep-dot.active { background: var(--dourado); transform: scale(1.25); }
+@media (max-width: 900px) { .dep-card { flex: 0 0 calc((100% - 16px) / 2); } }
+@media (max-width: 600px) { .dep-card { flex: 0 0 100%; } .dep-arrow { width: 34px; height: 34px; } }
+</style>
+
+<script>
+(function() {
+  const track    = document.getElementById('depTrack');
+  const outer    = document.getElementById('depTrackOuter');
+  const cards    = track.querySelectorAll('.dep-card');
+  const prevBtn  = document.getElementById('depPrev');
+  const nextBtn  = document.getElementById('depNext');
+  const dotsWrap = document.getElementById('depDots');
+  const total    = cards.length;
+  let current    = 0;
+
+  function visibleCount() {
+    const w = outer.offsetWidth;
+    if (w < 600) return 1;
+    if (w < 900) return 2;
+    return 3;
+  }
+  function maxIndex() { return Math.max(0, total - visibleCount()); }
+
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    for (let i = 0; i <= maxIndex(); i++) {
+      const btn = document.createElement('button');
+      btn.className = 'dep-dot' + (i === current ? ' active' : '');
+      btn.setAttribute('aria-label', 'Ir para depoimento ' + (i + 1));
+      btn.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(btn);
+    }
+  }
+
+  function goTo(idx) {
+    current = Math.min(Math.max(idx, 0), maxIndex());
+    const cardW  = cards[0].offsetWidth;
+    const offset = current * (cardW + 16);
+    track.style.transform = 'translateX(-' + offset + 'px)';
+    dotsWrap.querySelectorAll('.dep-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current >= maxIndex();
+  }
+
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  let touchStartX = 0;
+  outer.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  outer.addEventListener('touchend',   e => { const dx = touchStartX - e.changedTouches[0].clientX; if (Math.abs(dx) > 40) goTo(current + (dx > 0 ? 1 : -1)); });
+
+  buildDots();
+  goTo(0);
+  window.addEventListener('resize', () => { buildDots(); goTo(Math.min(current, maxIndex())); });
+})();
+</script>
+
+<!-- ══════════════════════════════ CONTATO ══════════════════════════════ -->
+<section class="contato" id="contato">
+  <div class="contato-inner">
+
+    <!-- Coluna esquerda: infos + mapa -->
+    <div class="contato-info">
+      <p class="contato-tag">Contatos</p>
+      <h2 class="contato-h2">Vamos dar forma à sua ideia?</h2>
+      <p class="contato-desc">Entre em contato através do formulário ao lado e receba um orçamento gratuito.</p>
+
+      <div class="contato-detalhes">
+        <div class="contato-item">
+          <span class="contato-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>(11) 99999-9999</span>
+        </div>
+        <div class="contato-item">
+          <span class="contato-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>contato@maiconmonteiro.com.br</span>
+        </div>
+      </div>
+
+      <div class="contato-mapa">
+        <img src="maps.png" alt="Mapa – Centro, Uberlândia, MG">
+      </div>
+    </div>
+
+    <!-- Coluna direita: formulário -->
+    <div class="contato-form-wrap">
+      <div class="contato-form">
+        <input type="text"   class="form-input" placeholder="Seu nome completo">
+        <input type="tel"    class="form-input" placeholder="Seu número de WhatsApp">
+        <input type="email"  class="form-input" placeholder="Seu melhor e-mail">
+        <select class="form-input form-select">
+          <option value="" disabled selected>Qual o assunto do contato?</option>
+          <option>Orçamento</option>
+          <option>Dúvida</option>
+          <option>Reclamação</option>
+          <option>Outro</option>
+        </select>
+        <select class="form-input form-select">
+          <option value="" disabled selected>Sobre qual serviço</option>
+          <option>Boiserie Decorativo</option>
+          <option>Sancas Iluminadas</option>
+          <option>Revestimento 3D em Gesso</option>
+          <option>Molduras e Rodapés</option>
+          <option>Teto Rebaixado em Gesso</option>
+          <option>Painéis em Gesso Liso</option>
+        </select>
+        <textarea class="form-input form-textarea" placeholder="Deixe sua mensagem aqui"></textarea>
+        <button type="submit" class="form-btn">Enviar</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.contato { background: var(--creme); padding: 80px 5% 100px; }
+.contato-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+
+.contato-tag { font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: var(--dourado); margin-bottom: 10px; }
+.contato-h2 { font-family: 'Raleway', sans-serif; font-size: clamp(22px, 2.4vw, 34px); font-weight: 700; color: var(--verde-escuro); line-height: 1.15; margin-bottom: 14px; }
+.contato-desc { font-size: clamp(13px, 1.1vw, 14.5px); color: #666; line-height: 1.65; margin-bottom: 28px; }
+
+.contato-detalhes { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+.contato-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--verde-escuro); font-weight: 500; }
+.contato-icon { width: 36px; height: 36px; background: rgba(45,79,46,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--verde); flex-shrink: 0; }
+.contato-icon svg { width: 16px; height: 16px; }
+
+.whatsapp-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--verde); color: var(--branco); text-decoration: none; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; border-radius: 6px; border: 2px solid var(--verde); transition: background .25s, color .25s, transform .2s; margin-bottom: 28px; }
+.whatsapp-btn:hover { background: transparent; color: var(--verde); transform: translateY(-2px); }
+
+.contato-mapa { border-radius: 12px; overflow: hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.10); }
+.contato-mapa img { width: 100%; display: block; object-fit: cover; }
+
+/* Formulário */
+.contato-form-wrap { background: #ffffff; border-radius: 18px; padding: 36px 32px; box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
+.contato-form { display: flex; flex-direction: column; gap: 14px; }
+
+.form-input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #e8e0d0;
+  border-radius: 8px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 13.5px;
+  color: var(--verde-escuro);
+  background: #faf8f4;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input::placeholder { color: #aaa; }
+.form-input:focus { border-color: var(--dourado); box-shadow: 0 0 0 3px rgba(160,120,64,0.12); background: #fff; }
+
+.form-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a07840' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+
+.form-textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+
+.form-btn { padding: 14px 28px; background: var(--dourado); color: var(--branco); border: 2px solid var(--dourado); border-radius: 6px; font-family: 'Raleway', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, transform .2s; align-self: flex-start; }
+.form-btn:hover { background: transparent; color: var(--dourado); transform: translateY(-2px); }
+
+/* Animação entrada contato */
+.contato-info { opacity: 0; transform: translateX(-24px); transition: opacity .7s ease, transform .7s ease; }
+.contato-form-wrap { opacity: 0; transform: translateX(24px); transition: opacity .7s ease .2s, transform .7s ease .2s; }
+.contato.visible .contato-info, .contato.visible .contato-form-wrap { opacity: 1; transform: translateX(0); }
+
+@media (max-width: 900px) {
+  .contato-inner { grid-template-columns: 1fr; gap: 40px; }
+  .contato-form-wrap { padding: 28px 22px; }
+}
+</style>
+
+<script>
+const contatoSection = document.querySelector('.contato');
+const obsContato = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obsContato.unobserve(e.target); } });
+}, { threshold: 0.1 });
+obsContato.observe(contatoSection);
+</script>
+
+<!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+
+    <!-- Logo + descrição -->
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="iconeMonteiro.png" alt="Ícone Maicon Monteiro">
+        <div class="footer-logo-text">
+          <span class="footer-logo-nome">Maicon Monteiro</span>
+          <span class="footer-logo-sub">ESPECIALISTA EM GESSO</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Redes Sociais -->
+    <div class="footer-col">
+      <p class="footer-col-titulo">Redes Sociais</p>
+      <div class="footer-sociais">
+        <a href="#" class="footer-social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          @maicongesseiro
+        </a>
+        <a href="#" class="footer-social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          @maicongesseiro
+        </a>
+        <a href="#" class="footer-social-btn" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          @maicongesseiro
+        </a>
+      </div>
+    </div>
+
+    <!-- Contatos -->
+    <div class="footer-col">
+      <p class="footer-col-titulo">Contatos</p>
+      <ul class="footer-lista">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+          Rua do Exemplo, 99 – Centro<br>Uberlândia – Minas Gerais (BR)
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Segunda a Sexta: 8h – 18h
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 018.19 18.9a19.5 19.5 0 01-5.9-5.9A19.79 19.79 0 011 5.18 2 2 0 012.98 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 18v1z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Telefone: (11) 9 9999-9999
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.846.497 3.576 1.364 5.065L2 22l5.09-1.341A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+          WhatsApp: (11) 9 9999-9999
+        </li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-col">
+      <p class="footer-col-titulo">Newsletter</p>
+      <p class="footer-newsletter-desc">Receba novidades e conteúdos exclusivos.</p>
+      <div class="footer-newsletter-form">
+        <input type="email" class="footer-newsletter-input" placeholder="Seu melhor e-mail">
+        <button class="footer-newsletter-btn">Inscrever</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span>© 2025 Maicon Monteiro – Todos os direitos reservados</span>
+      <a href="#">Políticas de privacidade</a>
+    </div>
+  </div>
+
+ <a href="#" target="_blank" class="whatsapp-float" aria-label="Falar pelo WhatsApp">
+  <img src="whatsapp.png" alt="WhatsApp" width="26" height="26">
+  <span class="whatsapp-float-badge"></span>
+</a>
+</footer>
+
+<style>
+/* ══ FOOTER ══ */
+.footer { background: var(--verde-escuro); }
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr 1.1fr;
+  gap: 48px;
+  padding: 64px 5% 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Logo */
+.footer-brand { display: flex; flex-direction: column; }
+.footer-logo { display: flex; align-items: center; gap: 14px; }
+.footer-logo img { width: 56px; height: 56px; object-fit: contain; filter: brightness(0) invert(1); opacity: .9; }
+.footer-logo-text { display: flex; flex-direction: column; }
+.footer-logo-nome { font-family: 'Raleway', sans-serif; font-size: 17px; font-weight: 700; color: var(--branco); letter-spacing: .01em; }
+.footer-logo-sub { font-family: 'Raleway', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: .22em; color: var(--dourado); text-transform: uppercase; margin-top: 2px; }
+
+/* Colunas */
+.footer-col-titulo { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; font-weight: 600; color: var(--dourado); margin-bottom: 18px; }
+
+/* Sociais */
+.footer-sociais { display: flex; flex-direction: column; gap: 10px; }
+.footer-social-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: 8px; padding: 9px 14px; color: rgba(255,255,255,0.82); text-decoration: none; font-size: 12.5px; font-weight: 500; letter-spacing: .02em; transition: background .2s, color .2s, border-color .2s; }
+.footer-social-btn:hover { background: rgba(160,120,64,0.15); border-color: var(--dourado); color: var(--branco); }
+.footer-social-btn svg { flex-shrink: 0; color: var(--dourado); }
+
+/* Lista contatos */
+.footer-lista { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+.footer-lista li { display: flex; align-items: flex-start; gap: 9px; font-size: 12.5px; color: rgba(255,255,255,0.70); line-height: 1.55; }
+.footer-lista li svg { flex-shrink: 0; margin-top: 2px; color: var(--dourado); }
+
+/* Newsletter */
+.footer-newsletter-desc { font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.55; margin-bottom: 16px; }
+.footer-newsletter-form { display: flex; flex-direction: column; gap: 10px; }
+.footer-newsletter-input { width: 100%; padding: 11px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; color: var(--branco); font-family: 'Raleway', sans-serif; font-size: 12.5px; outline: none; transition: border-color .2s; }
+.footer-newsletter-input::placeholder { color: rgba(255,255,255,0.35); }
+.footer-newsletter-input:focus { border-color: var(--dourado); }
+.footer-newsletter-btn { padding: 11px 18px; background: var(--verde); color: var(--branco); border: 2px solid var(--verde); border-radius: 8px; font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: background .2s, color .2s; }
+.footer-newsletter-btn:hover { background: transparent; color: var(--branco); border-color: rgba(255,255,255,0.3); }
+
+/* Bottom bar */
+.footer-bottom { padding: 20px 5%; }
+.footer-bottom-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.footer-bottom-inner span { font-size: 12px; color: rgba(255,255,255,0.45); }
+.footer-bottom-inner a { font-size: 12px; color: rgba(255,255,255,0.45); text-decoration: underline; text-underline-offset: 3px; transition: color .2s; }
+.footer-bottom-inner a:hover { color: var(--dourado); }
+
+/* WhatsApp flutuante */
+.whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 54px; height: 54px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,0.40); transition: transform .2s, box-shadow .2s; text-decoration: none; }
+.whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,0.50); }
+.whatsapp-float-badge { position: absolute; top: 4px; right: 4px; width: 12px; height: 12px; background: #e53935; border-radius: 50%; border: 2px solid var(--verde-escuro); }
+
+/* Footer responsivo */
+@media (max-width: 1024px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+@media (max-width: 600px) {
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; padding: 44px 5% 36px; }
+  .whatsapp-float { bottom: 20px; right: 20px; width: 48px; height: 48px; }
+}
+</style>
+
+</body>
+</html>
